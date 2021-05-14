@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     *{
+        margin : 0;
+        padding : 0;
+        text-align : center;
+     }
+     body{
+        width : 100vw;
+        height : 100vh;
+     }
+     #tbox, #tbox2{
+        position : relative;
+        top : 50%;
+        left : 50%;
+        transform : translate(-50%,-50%);
+     }
+     #nom{
+        width : 100px;
+        height : 100px;
+        background : orange;
+        position : relative;
+        left : 50%;
+        transform : translateX(-50%);
+        margin-top : 30px;
+     }
+  </style>
+</head>
+<body>
+   <div id="tbox">
+      <div id="t_output">
+         말씀해주시길 바랍니다
+      </div>
+      <div id="nom">
+
+      </div>
+   </div>
+   <div id="tbox2">
+      <input type='text' id="t_input" onkeydown="scriptE();">
+   </div>
+   <script>
+      const script1 ={
+         '공부' : "코뮤니티에서 하면 됩니다",
+         '밥': "근방 300m 내에 맛집으로 선정된 중국집이 있습니다",
+         '연애': "연애할 때입니까? 공부나 더 하십쇼",
+         "대외활동":"신청했던 이력을 기반으로 대외활동을 추천드립니다"
+      }
+      const tv = document.getElementById('t_input');
+      const tout = document.getElementById('t_output');
+      const nom = document.getElementById('nom');
+      const back = document.getElementsByTagName('body')[0];
+
+      function scriptE(){
+         if(event.keyCode == 13){
+            if(tv.value.includes('밥')){
+               tout.innerHTML = script1.밥;
+            }
+            else if(tv.value.includes('공부')){
+               tout.innerHTML = script1.공부;
+            }
+            else if(tv.value.includes('연애')){
+               tout.innerHTML = script1.연애;
+            }
+            else if(tv.value.includes('대외활동')){
+               tout.innerHTML = script1.대외활동;
+            }
+            else if(tv.value === 'do flip'){
+               nom.style.transform = 'rotate(180deg)';
+               nom.style.transition = '1s';
+            }
+            else if(tv.value === 'turn off'){
+               back.style.background = 'black';
+               back.style.transition = '1s';
+            }
+            else if(tv.value === 'turn on'){
+               back.style.background = 'white';
+            }
+            else if(tv.value === 'die'){
+               nom.style.background = 'red';
+               nom.style.transition = '0.5s';
+               back.style.background = 'red';
+               back.style.transition = '5s';
+               back.style.color = 'transparent';
+               tv.style.background = 'transparent';
+            } else{
+               tout.innerHTML = "아직 준비되지 않았습니다.";
+            }
+            return tv.value = '';
+         }
+      }
+   </script>
+</body>
+</html>
